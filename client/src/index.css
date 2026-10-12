@@ -1,0 +1,27 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root, [data-theme='dark'] {
+  --bg:#121212; --card:#1E1E1E; --line:#2C2C2E; --hov:#252525; --ink:#FFFFFF; --mute:#98989D;
+  --acc:#00E5FF; --accfg:#001014; --ok:#32D74B; --bad:#FF453A; --badbg:#3A1C1C;
+  --c1:#00E5FF; --c2:#32D74B; --c3:#BF5AF2; --c4:#FF9F0A; --c5:#FF6482;
+}
+[data-theme='light'] { /* papel cálido estilo Notion */
+  --bg:#f6f5f4; --card:#ffffff; --line:rgba(0,0,0,.08); --hov:#f6f5f4; --ink:#000000; --mute:#615d59;
+  --acc:#0075de; --accfg:#ffffff; --ok:#1a9d3a; --bad:#e32d14; --badbg:#fdeceb;
+  --c1:#0075de; --c2:#1a9d3a; --c3:#6b4fd8; --c4:#e89d01; --c5:#f64932;
+}
+body { @apply bg-bg text-ink font-sans text-sm antialiased; transition: background .25s ease, color .25s ease; }
+@layer components {
+  .card { @apply bg-card border border-line rounded-card p-5 transition duration-200; }
+  .lift { @apply hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,.45)]; }
+  .inp { @apply w-full bg-bg border border-line rounded-lg px-3 py-3 text-base text-ink outline-none transition duration-200 focus:border-acc; }
+  .inp:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 22%, transparent); }
+  .lbl { @apply block text-xs font-medium text-mute mb-1; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-medium transition duration-200 active:scale-95 hover:-translate-y-px; }
+  .btn-acc { @apply btn bg-acc text-accfg hover:opacity-90 disabled:opacity-50 disabled:translate-y-0; }
+  .btn-ghost { @apply btn border border-line text-ink hover:bg-hov; }
+  .btn-bad { @apply btn bg-bad text-white hover:opacity-90 disabled:opacity-50; }
+  .icon-btn { @apply w-8 h-8 inline-flex items-center justify-center rounded-lg text-base transition duration-200 hover:scale-110 active:scale-90 hover:bg-hov; }
+  .kpi { @apply font-mono font-bold text-[22px] leading-tight; }
+  .pill { @apply inline-block rounded-full px-2.5 py-0.5 text-xs font-medium; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
